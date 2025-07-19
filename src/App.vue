@@ -1,4 +1,17 @@
 <script setup>
+import {ref} from 'vue'
+
+const newTodo = ref('');
+const tasks = ref([])
+
+function addTodo() {
+  tasks.value.push({text: newTodo.value, checked: false})
+  newTodo.value = '';
+}
+
+const toggleCheck = (task) => {
+  task.checked = !task.checked;
+}
 </script>
 
 <template>
@@ -6,13 +19,16 @@
     <div id='todo-app'>
       <h2>To-Do List</h2>
       <div id='row'>
-        <input type='text' id='input-box' placeholder='Add Your Text'>
-        <button>Add</button>
+        <input type='text' v-model='newTodo' id='input-box' required placeholder='Add Your Text'>
+        <button @click='addTodo'>Add</button>
       </div>
-      <ul id='list-container'>
-        <li>Task 1</li>
-        <li>Task 2</li>
-        <li>Task 3</li>
+      <ul :id='list-container'>
+        <li v-for='task in tasks'
+          :key='task.text'
+          :class='{checked: task.checked}'
+          @click='toggleCheck(task)'>
+          {{task.text}}
+        </li>
       </ul>
     </div>
   </div>
@@ -30,7 +46,7 @@ button{
   border: none;
    outline: none;
   padding: 16px 50px;
-  background: #ff5945;
+  background: #84df84;
   font-size: 16px;
   cursor: pointer;
   border-radius: 40px;
@@ -39,7 +55,7 @@ button{
 #container {
   width: 100%;
   min-height: 100vh;
-  background: black;
+  background: #232323;
   padding: 10px;
 }
 
@@ -75,14 +91,41 @@ input {
   border: none;
   background: transparent;
   padding: 10px;
-  font-weight: 14px;
+  font-size: 14px;
 }
 
 ul li {
+  transition: 0.5s;
   list-style: none;
   font-size: 17px;
   padding: 12px 8px 12px 50px;
   user-select: none;
   cursor: pointer;
+  position: relative;
+}
+
+ul li::before {
+  transition: 0.5s;
+  content: '';
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background-image: url(unchecked.png);
+  background-size: cover;
+  background-position: center;
+  top: 12px;
+  left: 8px;
+}
+
+ul li.checked {
+  transition: 0.5s;
+  color: #555;
+  text-decoration: line-through;
+}
+
+ul li.checked::before {
+  transition: 0.5s;
+  background-image: url(checked.png);
 }
 </style>
