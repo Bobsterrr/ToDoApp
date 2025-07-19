@@ -1,64 +1,43 @@
 <script setup>
-import { ref, computed } from 'vue';
-
-const todos = ref([]);
-const newTodo = ref('');
-const hideCompleted = ref(false);
-
-let id = todos.value.length > 0 ? Math.max(...todos.value.map(todo => todo.id)) + 1 : 1;
-
-const filteredTodos = computed(() => {
-  return hideCompleted.value
-    ? todos.value.filter((todo) => !todo.done)
-    : todos.value;
-});
-
-// Methods
-function addTodo() {
-  if (newTodo.value.trim() === '') {
-    return;
-  }
-  todos.value.push({
-    id: id++,
-    text: newTodo.value,
-    done: false
-  });
-  newTodo.value = '';
-}
-
-function removeTodo(todo) {
-  todos.value = todos.value.filter((t) => t !== todo);
-}
 </script>
 
 <template>
-  <form @submit.prevent="addTodo">
-    <input v-model="newTodo" required placeholder="new todo">
-    <button>Add Todo</button>
-  </form>
-  <ul>
-    <li v-for="todo in filteredTodos" :key="todo.id">
-      <input type="checkbox" v-model="todo.done">
-      <span :class="{ done: todo.done }">{{ todo.text }}</span>
-      <button id='todo_deleting' @click="removeTodo(todo)">X</button>
-    </li>
-  </ul>
-  <button @click="hideCompleted = !hideCompleted">
-    {{ hideCompleted ? 'Show all' : 'Hide completed' }}
-  </button>
+  <div id='container'>
+    <div id='todo-app'>
+      <h2>To-Do List</h2>
+    </div>
+  </div>
 </template>
 
 <style>
-.done {
-  text-decoration: line-through;
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 
-ul {
-  all: unset;
+#container {
+  width: 100%;
+  min-height: 100vh;
+  background: black;
+  padding: 10px;
 }
 
-li {
-  all: unset;
+#todo-app {
+  width: 100%;
+  max-width: 540px;
+  background: #fff;
+  margin: 100px auto 20px;
+  padding: 40px 30px 70px;
+  border-radius: 10px;
+  color: black;
 }
 
+#todo-app h2 {
+  color: #002765;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
 </style>
