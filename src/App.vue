@@ -22,10 +22,19 @@ const toggleCheck = (task) => {
   <div id='container'>
     <div id='todo-app'>
       <h2>To-Do List</h2>
-      <div id='row'>
-        <input type='text' v-model='newTodo' @keyup.enter='addTodo' id='input-box' required placeholder='Add Your Text'>
-        <button @click='addTodo'>Add</button>
-      </div>
+      <form
+        id='row'
+        @submit.prevent='addTodo'
+      >
+        <input
+          v-model='newTodo'
+          id='input-box'
+          type='text'
+          required
+          placeholder='Add Your Text'
+        >
+        <button>Add</button>
+      </form>
       <p class='counter'>
         {{characterCount}}/50
       </p>
