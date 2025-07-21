@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue'
+import {ref, computed} from 'vue'
 
 const newTodo = ref('');
 const tasks = ref([])
@@ -8,6 +8,10 @@ function addTodo() {
   tasks.value.push({text: newTodo.value, checked: false})
   newTodo.value = '';
 }
+
+const characterCount = computed(() => {
+  return newTodo.value.length
+})
 
 const toggleCheck = (task) => {
   task.checked = !task.checked;
@@ -22,6 +26,9 @@ const toggleCheck = (task) => {
         <input type='text' v-model='newTodo' id='input-box' required placeholder='Add Your Text'>
         <button @click='addTodo'>Add</button>
       </div>
+      <p class='counter'>
+        {{characterCount}}/50
+      </p>
       <ul>
         <li v-for='task in tasks'
           :key='task.text'
