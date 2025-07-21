@@ -23,7 +23,7 @@ const toggleCheck = (task) => {
     <div id='todo-app'>
       <h2>To-Do List</h2>
       <div id='row'>
-        <input type='text' v-model='newTodo' id='input-box' required placeholder='Add Your Text'>
+        <input type='text' v-model='newTodo' @keyup.enter='addTodo' id='input-box' required placeholder='Add Your Text'>
         <button @click='addTodo'>Add</button>
       </div>
       <p class='counter'>
@@ -45,6 +45,10 @@ const toggleCheck = (task) => {
 </template>
 
 <style>
+:root {
+  --green: #84df84;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -56,7 +60,7 @@ button{
   border: none;
    outline: none;
   padding: 16px 50px;
-  background: #84df84;
+  background: var(--green);
   font-size: 16px;
   cursor: pointer;
   border-radius: 40px;
@@ -143,7 +147,8 @@ ul li.checked::before {
   font-size: 22px;
   font-weight: bold;
   text-align: center;
-  color: darkred;
+  color: var(--green);
   margin-top: 15px;
 }
+
 </style>
