@@ -22,7 +22,7 @@ const toggleCheck = (task) => {
         <input type='text' v-model='newTodo' id='input-box' required placeholder='Add Your Text'>
         <button @click='addTodo'>Add</button>
       </div>
-      <ul :id='list-container'>
+      <ul>
         <li v-for='task in tasks'
           :key='task.text'
           :class='{checked: task.checked}'
