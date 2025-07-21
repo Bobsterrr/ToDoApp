@@ -37,6 +37,9 @@ const toggleCheck = (task) => {
           {{task.text}}
         </li>
       </ul>
+      <p v-if='!tasks.length' id='todo_absenceMessage'>
+        You have Nothing To Do
+      </p>
     </div>
   </div>
 </template>
@@ -134,5 +137,13 @@ ul li.checked {
 ul li.checked::before {
   transition: 0.5s;
   background-image: url(checked.png);
+}
+
+#todo_absenceMessage {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  color: darkred;
+  margin-top: 15px;
 }
 </style>
