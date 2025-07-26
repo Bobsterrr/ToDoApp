@@ -2,6 +2,10 @@
 import {ref} from 'vue'
 
 const tasks = ref([])
+
+const toggleCheck = (task) => {
+  task.checked = !task.checked;
+}
 </script>
 
 <template>

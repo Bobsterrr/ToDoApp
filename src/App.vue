@@ -1,16 +1,13 @@
 <script setup>
-import {ref, computed} from 'vue'
+import {ref} from 'vue'
 import Todo from './components/Todo.vue'
 
-const newTodo = ref('');
 const tasks = ref([])
 
 
 
 
-const toggleCheck = (task) => {
-  task.checked = !task.checked;
-}
+
 </script>
 
 <template>
