@@ -12,27 +12,27 @@ function updateTodo(event) {
 </script>
 
 <template>
-      <form
-        id='row'
-        @submit.prevent='addTodo'
-      >
-        <input
-          :value='newTodo'
-          @input='updateTodo'
-          id='input-box'
-          type='text'
-          required
-          placeholder='Add Your Text'
-          maxlength='50'
-        >
-        <button>Add</button>
-      </form>
+  <form
+    id='row'
+    @submit.prevent='addTodo'
+  >
+    <input
+      :value='newTodo'
+      @input='updateTodo'
+      id='input-box'
+      type='text'
+      required
+      placeholder='Add Your Text'
+      maxlength="50"
+    >
+    <button>Add</button>
+  </form>
 </template>
 
 <style>
 button{
   border: none;
-   outline: none;
+  outline: none;
   padding: 16px 50px;
   background: var(--green);
   font-size: 16px;

@@ -15,7 +15,6 @@ const addTodo = () => {
 const toggleCheck = (task) => {
   task.checked = !task.checked
 }
-
 </script>
 
 <template>
@@ -23,11 +22,11 @@ const toggleCheck = (task) => {
     <div id='todo-app'>
       <h2>To-Do List</h2>
       <Todo
-        :tasks='tasks'
-        :newTodo='newTodo'
-        @add-todo='addTodo'
-        @update-todo='(value) => newTodo = value'
-        @toggle-check='toggleCheck'
+        :tasks="tasks"
+        :newTodo="newTodo"
+        @add-todo="addTodo"
+        @update-todo="(value) => newTodo = value"
+        @toggle-check="toggleCheck"
       />
       <p v-if='!tasks.length' id='todo_absenceMessage'>
         You have Nothing To Do
@@ -47,8 +46,6 @@ const toggleCheck = (task) => {
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
-
-
 
 #container {
   width: 100%;
@@ -74,8 +71,6 @@ const toggleCheck = (task) => {
   margin-bottom: 20px;
 }
 
-
-
 #todo_absenceMessage {
   font-size: 22px;
   font-weight: bold;
@@ -83,5 +78,4 @@ const toggleCheck = (task) => {
   color: var(--green);
   margin-top: 15px;
 }
-
 </style>

@@ -8,18 +8,17 @@ const toggleCheck = (task) => {
 </script>
 
 <template>
-      <ul>
-        <li v-for='task in tasks'
-          :key='task.text'
-          :class='{checked: task.checked}'
-          @click='toggleCheck(task)'>
-          {{task.text}}
-        </li>
-      </ul>
+  <ul>
+    <li v-for='task in tasks'
+      :key='task.text'
+      :class='{checked: task.checked}'
+      @click='toggleCheck(task)'>
+      {{task.text}}
+    </li>
+  </ul>
 </template>
 
 <style>
-
 ul li {
   transition: 0.5s;
   list-style: none;
@@ -54,5 +53,4 @@ ul li.checked::before {
   transition: 0.5s;
   background-image: url(checked.png);
 }
-
 </style>

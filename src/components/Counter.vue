@@ -9,11 +9,9 @@ const characterCount = computed(() => {
 </script>
 
 <template>
-      <p class='counter'>
-        {{characterCount}}/50
-      </p>
+  <p class='counter'>
+    {{characterCount}}/50
+  </p>
 </template>
 
-<style>
 
-</style>

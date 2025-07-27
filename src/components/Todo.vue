@@ -9,17 +9,13 @@ defineEmits(['add-todo', 'update-todo', 'toggle-check'])
 
 <template>
   <Form
-    :newTodo='newTodo'
-    @add-todo='$emit("update-todo", $event)'
+    :newTodo="newTodo"
+    @add-todo="$emit('add-todo')"
     @update-todo="$emit('update-todo', $event)"
   />
-  <Counter :newTodo='newTodo'/>
+  <Counter :newTodo="newTodo"/>
   <ListOfTodo
-    :tasks='tasks'
+    :tasks="tasks"
     @toggle-check="$emit('toggle-check', $event)"
   />
 </template>
-
-<style>
-
-</style>
