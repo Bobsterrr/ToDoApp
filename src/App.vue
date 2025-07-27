@@ -3,10 +3,18 @@ import {ref} from 'vue'
 import Todo from './components/Todo.vue'
 
 const tasks = ref([])
+const newTodo = ref('')
 
+const addTodo = () => {
+  if (newTodo.value.trim()) {
+    tasks.value.push({text: newTodo.value.trim(), checked: false})
+    newTodo.value = ''
+  }
+}
 
-
-
+const toggleCheck = (task) => {
+  task.checked = !task.checked
+}
 
 </script>
 
@@ -14,7 +22,13 @@ const tasks = ref([])
   <div id='container'>
     <div id='todo-app'>
       <h2>To-Do List</h2>
-      <Todo/>
+      <Todo
+        :tasks='tasks'
+        :newTodo='newTodo'
+        @add-todo='addTodo'
+        @update-todo='(value) => newTodo = value'
+        @toggle-check='toggleCheck'
+      />
       <p v-if='!tasks.length' id='todo_absenceMessage'>
         You have Nothing To Do
       </p>

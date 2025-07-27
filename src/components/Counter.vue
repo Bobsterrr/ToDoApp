@@ -1,10 +1,10 @@
 <script setup>
-import {ref, computed} from 'vue'
+import {computed} from 'vue'
 
-const newTodo = ref('');
+const props = defineProps(['newTodo'])
 
 const characterCount = computed(() => {
-  return newTodo.value.length
+  return props.newTodo.length
 })
 </script>
 

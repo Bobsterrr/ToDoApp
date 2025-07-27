@@ -1,10 +1,9 @@
 <script setup>
-import {ref} from 'vue'
-
-const tasks = ref([])
+const props = defineProps(['tasks'])
+const emit = defineEmits(['toggle-check'])
 
 const toggleCheck = (task) => {
-  task.checked = !task.checked;
+  emit('toggle-check', task)
 }
 </script>
 

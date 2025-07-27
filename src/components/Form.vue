@@ -1,12 +1,13 @@
 <script setup>
-import {ref} from 'vue'
-
-const newTodo = ref('');
-const tasks = ref([])
+const props = defineProps(['newTodo'])
+const emit = defineEmits(['add-todo', 'update-todo'])
 
 function addTodo() {
-  tasks.value.push({text: newTodo.value, checked: false})
-  newTodo.value = '';
+  emit('add-todo')
+}
+
+function updateTodo(event) {
+  emit('update-todo', event.target.value)
 }
 </script>
 
@@ -16,11 +17,13 @@ function addTodo() {
         @submit.prevent='addTodo'
       >
         <input
-          v-model='newTodo'
+          :value='newTodo'
+          @input='updateTodo'
           id='input-box'
           type='text'
           required
           placeholder='Add Your Text'
+          maxlength='50'
         >
         <button>Add</button>
       </form>
