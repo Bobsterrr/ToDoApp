@@ -1,21 +1,26 @@
 <script setup>
-const props = defineProps(['tasks'])
-const emit = defineEmits(['toggle-check'])
+import {inject} from 'vue'
+
+
+const {tasks} = inject('todo')
 
 const toggleCheck = (task) => {
-  emit('toggle-check', task)
+  task.checked = !task.checked;
 }
 </script>
 
 <template>
-  <ul>
-    <li v-for='task in tasks'
-      :key='task.text'
-      :class='{checked: task.checked}'
-      @click='toggleCheck(task)'>
-      {{task.text}}
-    </li>
-  </ul>
+      <ul>
+        <li v-for='task in tasks'
+          :key='task.text'
+          :class='{checked: task.checked}'
+          @click='toggleCheck(task)'>
+          {{task.text}}
+        </li>
+      </ul>
+      <p v-if='!tasks.length' id='todo_absenceMessage'>
+        You have Nothing To Do
+      </p>
 </template>
 
 <style>
@@ -52,5 +57,13 @@ ul li.checked {
 ul li.checked::before {
   transition: 0.5s;
   background-image: url(checked.png);
+}
+
+#todo_absenceMessage {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--green);
+  margin-top: 15px;
 }
 </style>

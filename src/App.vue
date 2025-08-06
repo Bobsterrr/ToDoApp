@@ -1,36 +1,24 @@
 <script setup>
-import {ref} from 'vue'
-import Todo from './components/Todo.vue'
+import {ref, provide} from 'vue'
+import Form from './components/Form.vue'
+import ListOfTodo from './components/ListOfTodo.vue'
 
 const tasks = ref([])
 const newTodo = ref('')
 
-const addTodo = () => {
-  if (newTodo.value.trim()) {
-    tasks.value.push({text: newTodo.value.trim(), checked: false})
-    newTodo.value = ''
-  }
-}
+provide ('todo', {
+  newTodo,
+  tasks
+})
 
-const toggleCheck = (task) => {
-  task.checked = !task.checked
-}
 </script>
 
 <template>
   <div id='container'>
     <div id='todo-app'>
       <h2>To-Do List</h2>
-      <Todo
-        :tasks="tasks"
-        :newTodo="newTodo"
-        @add-todo="addTodo"
-        @update-todo="(value) => newTodo = value"
-        @toggle-check="toggleCheck"
-      />
-      <p v-if='!tasks.length' id='todo_absenceMessage'>
-        You have Nothing To Do
-      </p>
+      <Form/>
+      <ListOfTodo/>
     </div>
   </div>
 </template>
@@ -71,11 +59,22 @@ const toggleCheck = (task) => {
   margin-bottom: 20px;
 }
 
-#todo_absenceMessage {
-  font-size: 22px;
-  font-weight: bold;
-  text-align: center;
-  color: var(--green);
-  margin-top: 15px;
+#row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #edeef0;
+  border-radius: 30px;
+  padding-left: 20px;
+  margin-bottom: 25px;
 }
+
+input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  font-size: 14px;
+}
+
 </style>

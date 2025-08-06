@@ -1,35 +1,39 @@
 <script setup>
-const props = defineProps(['newTodo'])
-const emit = defineEmits(['add-todo', 'update-todo'])
+import {computed, inject} from 'vue'
+
+const {newTodo, tasks} = inject('todo')
 
 function addTodo() {
-  emit('add-todo')
+  tasks.value.push({text: newTodo.value, checked: false})
+  newTodo.value = '';
 }
 
-function updateTodo(event) {
-  emit('update-todo', event.target.value)
-}
+const characterCount = computed(() => {
+  return newTodo.value.length
+})
 </script>
 
 <template>
-  <form
-    id='row'
-    @submit.prevent='addTodo'
-  >
-    <input
-      :value='newTodo'
-      @input='updateTodo'
-      id='input-box'
-      type='text'
-      required
-      placeholder='Add Your Text'
-      maxlength="50"
-    >
-    <button>Add</button>
-  </form>
+      <form
+        id='row'
+        @submit.prevent='addTodo'
+      >
+        <input
+          v-model='newTodo'
+          id='input-box'
+          type='text'
+          required
+          placeholder='Add Your Text'
+          maxlength='50'
+        >
+        <button>Add</button>
+      </form>
+      <p class='counter'>
+        {{characterCount}}/50
+      </p>
 </template>
 
-<style>
+<style scoped>
 button{
   border: none;
   outline: none;
