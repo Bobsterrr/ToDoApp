@@ -58,23 +58,4 @@ provide ('todo', {
   align-items: center;
   margin-bottom: 20px;
 }
-
-#row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #edeef0;
-  border-radius: 30px;
-  padding-left: 20px;
-  margin-bottom: 25px;
-}
-
-input {
-  flex: 1;
-  border: none;
-  background: transparent;
-  padding: 10px;
-  font-size: 14px;
-}
-
 </style>
